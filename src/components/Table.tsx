@@ -68,6 +68,8 @@ const Table: React.FC<TableProps> = (props) => {
             ? "border-prev"
             : eqToNext
             ? "border-next"
+            : i === 0
+            ? "border-prev"
             : "";
 
           return (
