@@ -23,9 +23,22 @@ const StyledTable = styled.table`
   }
 
   th {
-    border-bottom-width: 2px;
+    border-bottom-width: 4px;
     font-weight: 500;
     font-size: 18px;
+  }
+
+  .border-prev td {
+    border-bottom-width: 4px;
+  }
+
+  .border-next td {
+    border-top-width: 4px;
+  }
+
+  .border-top-down {
+    border-bottom-width: 4px;
+    border-top-width: 4px;
   }
 `;
 
@@ -34,6 +47,7 @@ const Table: React.FC<TableProps> = (props) => {
     <StyledTable>
       <thead>
         <tr>
+          {/* <th>Step</th> */}
           <th>A</th>
           <th>Q</th>
           <th>
@@ -46,17 +60,36 @@ const Table: React.FC<TableProps> = (props) => {
         </tr>
       </thead>
       <tbody>
-        {props.table.map((col) => (
-          <tr>
-            <td>{col.A}</td>
-            <td>{col.Q}</td>
-            <td>{col.Q1}</td>
-            <td>{col.M}</td>
-            <td>{col.minusM}</td>
-            <td>{col.count}</td>
-            <td>{col.remarks}</td>
-          </tr>
-        ))}
+        {props.table.map((col, i) => {
+          const eqToNext = col.step === props.table[i + 1]?.step;
+          const eqToPrev = col.step === props.table[i - 1]?.step;
+
+          const trClassName = eqToPrev
+            ? "border-prev"
+            : eqToNext
+            ? "border-next"
+            : "";
+
+          return (
+            <tr className={trClassName} key={`${col.step}-${col.count}`}>
+              {/* {eqToNext ? (
+                <td className="border-top-down" rowSpan={2}>
+                  {col.step}
+                </td>
+              ) : eqToPrev ? null : (
+                <td>{col.step}</td>
+              )} */}
+
+              <td>{col.A}</td>
+              <td>{col.Q}</td>
+              <td>{col.Q1}</td>
+              <td>{col.M}</td>
+              <td>{col.minusM}</td>
+              <td>{col.count}</td>
+              <td>{col.remarks}</td>
+            </tr>
+          );
+        })}
       </tbody>
     </StyledTable>
   );

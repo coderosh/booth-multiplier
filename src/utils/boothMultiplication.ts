@@ -8,6 +8,7 @@ import {
 } from "./binary";
 
 export interface Column {
+  step: number;
   A: string;
   Q: string;
   Q1: string;
@@ -30,6 +31,7 @@ const boothMultiplication = (m: number, q: number) => {
 
   const table: Column[] = [
     {
+      step: 0,
       A,
       Q,
       Q1,
@@ -40,6 +42,8 @@ const boothMultiplication = (m: number, q: number) => {
     },
   ];
 
+  let step = 1;
+
   while (tempCount > 0) {
     // get q0 and q-1
     let q01 = Q[Q.length - 1] + Q1;
@@ -47,6 +51,7 @@ const boothMultiplication = (m: number, q: number) => {
     if (q01 === "01") {
       A = addition(A, M, count);
       table.push({
+        step: step,
         A,
         Q,
         Q1,
@@ -60,6 +65,7 @@ const boothMultiplication = (m: number, q: number) => {
     if (q01 === "10") {
       A = addition(A, minusM, count);
       table.push({
+        step,
         A,
         Q,
         Q1,
@@ -77,6 +83,7 @@ const boothMultiplication = (m: number, q: number) => {
 
     tempCount--;
     table.push({
+      step,
       A,
       Q,
       Q1,
@@ -85,6 +92,8 @@ const boothMultiplication = (m: number, q: number) => {
       count: tempCount,
       remarks: "Arithmetic Shift Right",
     });
+
+    step++;
   }
 
   return table;
