@@ -1,10 +1,11 @@
-import Table from "./components/Table";
-import Container from "./components/Container";
 import React from "react";
-import boothMultiplication, { Column } from "./utils/boothMultiplication";
+
 import Card from "./components/Card";
 import Form from "./components/Form";
+import Table from "./components/Table";
 import Title from "./components/Title";
+import Container from "./components/Container";
+import boothMultiplication, { Column } from "./utils/boothMultiplication";
 
 const App = () => {
   const [table, setTable] = React.useState<Column[]>([]);
