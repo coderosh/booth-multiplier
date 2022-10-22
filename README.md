@@ -9,6 +9,6 @@ and then the algorithm works as per the following conditions :
 3. If Qn Qn+1 = 01 do A= A – BR and perform arithmetic shift by 1 bit. 
 
 ## Flowchart:
-[Booth Algorithm Flowchart](./img/booths-algorithm-flowchart.jpg)
+![Booth Algorithm Flowchart](./img/booths-algorithm-flowchart.jpg)
 
 Hosted on: [Netlify](https://booth-multiplier.netlify.app/)
